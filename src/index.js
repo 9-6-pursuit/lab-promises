@@ -10,7 +10,18 @@ const finder = require("./helpers/finder");
  * @param {Object} person.first - The person's first name.
  * @param {Object} person.last - The person's last name.
  */
-function logResult() {}
+function logResult(person) {
+  //FIND THE PERSON WITH THIS FIRST AND LAST NAME
+  finder(person.first, person.last)
+  //THEN IF PERSON FOUND, LOG THAT PERSON
+  .then((person) => {
+    console.log(person)
+  })
+  //BUT IF PERSON IS NOT FOUND, LOG AN ERROR MESSAGE
+  .catch((error) => {
+    console.log(`${error}`)
+  });
+};
 
 /**
  * logTwoResults()
@@ -22,7 +33,22 @@ function logResult() {}
  * @param {Object} person1.last - The person's last name.
  * @param {Object} person2 - A person's names. In the same format as person1.
  */
-function logTwoResults() {}
+function logTwoResults(person1, person2) {
+  finder(person1.first, person1.last)
+  .then((person1) => {
+    console.log(person1)
+  })
+  .catch((error) => {
+    console.log(`${error}`)
+  });
+  finder(person2.first, person2.last)
+  .then((person2) => {
+    console.log(person2)
+  })
+  .catch((error) => {
+    console.log(`${error}`)
+  });
+};
 
 /**
  * logThreeResultsCities()
@@ -35,7 +61,37 @@ function logTwoResults() {}
  * @param {Object} person2 - A person's names. In the same format as person1.
  * @param {Object} person3 - A person's names. In the same format as person1.
  */
-function logThreeResultsCities() {}
+function logThreeResultsCities(person1, person2, person3) {
+  //FIND THIS PERSON FIRST
+  finder(person1.first, person1.last)
+  .then((person1) => {
+    //THEN FIND THE SECOND PERSON
+    finder(person2.first, person2.last)
+  .then((person2) => {
+    //THEN FIND THE THIRD PERSON 
+    finder(person3.first, person3.last)
+    .then((person3) => {
+      //IF ALL 3 PERSONS ARE FOUND
+      if(person1, person2, person3) {
+        //LOG OUT ALL 3 CITIES SEPARATELY
+console.log(`${person1[0].city}`); 
+console.log(`${person2[0].city}`);
+console.log(`${person3[0].city}`);
+}
+//IF FIRST PERSON ISN'T FOUND, LOG ERROR
+    }).catch((error) => {
+      console.log(`${error}`)
+    });
+    //IF SECOND PERSON ISN'T FOUND, LOG ERROR
+  }).catch((error) => {
+    console.log(`${error}`)
+  });
+  //IF THIRD PERSON ISN'T FOUND, LOG ERROR
+}).catch((error) => {
+  console.log(`${error}`)
+});
+};
+
 
 // Do not change any of the code below this line.
 module.exports = {
