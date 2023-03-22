@@ -10,7 +10,15 @@ const finder = require("./helpers/finder");
  * @param {Object} person.first - The person's first name.
  * @param {Object} person.last - The person's last name.
  */
-function logResult() {}
+function logResult(person) {
+  let promise =finder(person.first, person.last)
+  promise.then(result => {
+    console.log(result)
+  }).catch(error => {
+    console.log(error)
+  })
+
+}
 
 /**
  * logTwoResults()
@@ -22,7 +30,9 @@ function logResult() {}
  * @param {Object} person1.last - The person's last name.
  * @param {Object} person2 - A person's names. In the same format as person1.
  */
-function logTwoResults() {}
+function logTwoResults(person1, person2) {
+  console.log(logResult(person1), logResult(person2))
+}
 
 /**
  * logThreeResultsCities()
@@ -35,7 +45,16 @@ function logTwoResults() {}
  * @param {Object} person2 - A person's names. In the same format as person1.
  * @param {Object} person3 - A person's names. In the same format as person1.
  */
-function logThreeResultsCities() {}
+function logThreeResultsCities(person1, person2, person3) {
+  for (let i = 0; i < arguments.length; i++) {
+    let promise =finder(arguments[i].first, arguments[i].last)
+    promise.then(result => {
+      console.log(result[0].city)
+    }).catch(error => {
+      console.log(error)
+    })   
+  }
+}
 
 // Do not change any of the code below this line.
 module.exports = {
